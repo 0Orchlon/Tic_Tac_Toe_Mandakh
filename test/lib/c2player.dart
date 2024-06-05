@@ -29,32 +29,31 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     super.initState();
     initializeGame();
   }
-
+// auto start game
   void initializeGame() {
     board = List.generate(3, (_) => List.filled(3, ''));
     currentPlayer = 'X';
     moveCount = 0;
   }
-
+// press the cell
   void onCellTapped(int row, int col) {
   if (board[row][col].isEmpty) {
     setState(() {
       board[row][col] = currentPlayer;
       moveCount++;
-      if (moveHistory.length >= 6) {
+      if (moveHistory.length >= 6) { //>= 6 is the default
         removeFirstMove();
       }
       moveHistory.add([row, col]);
       if (checkWin()) {
         showWinDialog();
-      } else if (checkDraw()) {
-        showDrawDialog();
       } else {
         currentPlayer = currentPlayer == 'X'? 'O' : 'X';
       }
     });
   }
 }
+// start removeing the first ones
   void removeFirstMove() {
   if (moveHistory.isNotEmpty) {
     int row = moveHistory.first[0];
@@ -64,6 +63,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     moveCount--;
   }
 }
+// check for wins
   bool checkWin() {
     for (int i = 0; i < 3; i++) {
       if (board[i][0]!= '' && board[i][0] == board[i][1] && board[i][0] == board[i][2]) {
@@ -81,18 +81,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     }
     return false;
   }
-
-  bool checkDraw() {
-    for (int i = 0; i < 3; i++) {
-      for (int j = 0; j < 3; j++) {
-        if (board[i][j].isEmpty) {
-          return false;
-        }
-      }
-    }
-    return true;
-  }
-
+// Print thw win screen
   void showWinDialog() {
     showDialog(
       context: context,
@@ -114,27 +103,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     );
   }
 
-  void showDrawDialog() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Game Over'),
-          content: Text('It\'s a draw!'),
-          actions: <Widget>[
-            ElevatedButton(
-              child: Text('Play Again'),
-              onPressed: () {
-                initializeGame();
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
+// The main interface
   @override
   Widget build(BuildContext context) {
     return Scaffold(
