@@ -29,19 +29,22 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     super.initState();
     initializeGame();
   }
-// auto start game
+// start the game
   void initializeGame() {
-    board = List.generate(3, (_) => List.filled(3, ''));
-    currentPlayer = 'X';
-    moveCount = 0;
+    setState(() {
+      board = List.generate(3, (_) => List.filled(3, ''));
+      currentPlayer = 'X';
+      moveCount = 0;
+      moveHistory.clear();
+    });
   }
-// press the cell
+// place shape
   void onCellTapped(int row, int col) {
   if (board[row][col].isEmpty) {
     setState(() {
       board[row][col] = currentPlayer;
       moveCount++;
-      if (moveHistory.length >= 6) { //>= 6 is the default
+      if (moveHistory.length >= 6) {
         removeFirstMove();
       }
       moveHistory.add([row, col]);
@@ -53,7 +56,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     });
   }
 }
-// start removeing the first ones
+// Remove the first shape
   void removeFirstMove() {
   if (moveHistory.isNotEmpty) {
     int row = moveHistory.first[0];
@@ -63,7 +66,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     moveCount--;
   }
 }
-// check for wins
+// Check for win
   bool checkWin() {
     for (int i = 0; i < 3; i++) {
       if (board[i][0]!= '' && board[i][0] == board[i][1] && board[i][0] == board[i][2]) {
@@ -81,7 +84,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     }
     return false;
   }
-// Print thw win screen
+// Win Dialog
   void showWinDialog() {
     showDialog(
       context: context,
@@ -102,8 +105,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       },
     );
   }
-
-// The main interface
+// The Interface
   @override
   Widget build(BuildContext context) {
     return Scaffold(

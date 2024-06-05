@@ -29,13 +29,14 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     super.initState();
     initializeGame();
   }
-
   void initializeGame() {
-    board = List.generate(3, (_) => List.filled(3, ''));
-    currentPlayer = 'X';
-    moveCount = 0;
+    setState(() {
+      board = List.generate(3, (_) => List.filled(3, ''));
+      currentPlayer = 'X';
+      moveCount = 0;
+      moveHistory.clear();
+    });
   }
-
   void onCellTapped(int row, int col) {
   if (board[row][col].isEmpty) {
     setState(() {
@@ -47,8 +48,6 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       moveHistory.add([row, col]);
       if (checkWin()) {
         showWinDialog();
-      } else if (checkDraw()) {
-        showDrawDialog();
       } else {
         currentPlayer = currentPlayer == 'X'? 'O' : 'X';
       }
@@ -82,17 +81,6 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     return false;
   }
 
-  bool checkDraw() {
-    for (int i = 0; i < 3; i++) {
-      for (int j = 0; j < 3; j++) {
-        if (board[i][j].isEmpty) {
-          return false;
-        }
-      }
-    }
-    return true;
-  }
-
   void showWinDialog() {
     showDialog(
       context: context,
@@ -100,27 +88,6 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
         return AlertDialog(
           title: Text('Game Over'),
           content: Text('Player $currentPlayer wins!'),
-          actions: <Widget>[
-            ElevatedButton(
-              child: Text('Play Again'),
-              onPressed: () {
-                initializeGame();
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void showDrawDialog() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Game Over'),
-          content: Text('It\'s a draw!'),
           actions: <Widget>[
             ElevatedButton(
               child: Text('Play Again'),
