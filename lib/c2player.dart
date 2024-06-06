@@ -113,13 +113,6 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       },
     );
   }
-  void Xwin(){
-    
-  }
-  void Owin(){
-
-  }
-
 // The Interface
   @override
   Widget build(BuildContext context) {
