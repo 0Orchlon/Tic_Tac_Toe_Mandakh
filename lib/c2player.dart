@@ -24,6 +24,8 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
   String currentPlayer = 'X';
   int moveCount = 0;
   List<List<int>> moveHistory = [];
+  int xWins = 0;
+  int oWins = 0;
 
   @override
   void initState() {
@@ -50,6 +52,11 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       }
       moveHistory.add([row, col]);
       if (checkWin()) {
+        if (currentPlayer == 'X') {
+            xWins++;
+          } else {
+            oWins++;
+          }
         showWinDialog();
       } else {
         currentPlayer = currentPlayer == 'X'? 'O' : 'X';
@@ -120,7 +127,10 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       appBar: AppBar(
         title: Text('2 Player XO3'),
       ),
-      body: 
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [ Text('X Wins: $xWins, O Wins: $oWins', style: TextStyle(fontSize: 24)),
+          SizedBox(height: 20),
       Center(child: SizedBox(
         width: 300, // Adjust the width and height as needed
         height: 300,
@@ -146,7 +156,9 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
             ),
           );
         },)
-      ),)
+        ),)
+        ],
+      ),
     );
   }
 }
