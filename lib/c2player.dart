@@ -121,9 +121,10 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
         title: Text('2 Player XO3'),
       ),
       body: 
-      
-      
-      GridView.builder(
+      Center(child: SizedBox(
+        width: 300, // Adjust the width and height as needed
+        height: 300,
+      child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,),
         itemCount: 9,
@@ -144,8 +145,8 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
               ),
             ),
           );
-        },
-      ),
+        },)
+      ),)
     );
   }
 }
