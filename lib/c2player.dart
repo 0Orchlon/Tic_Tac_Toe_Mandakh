@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: TicTacToeGame(),
     );
   }
@@ -23,6 +24,8 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
   String currentPlayer = 'X';
   int moveCount = 0;
   List<List<int>> moveHistory = [];
+  int xWins = 0;
+  int oWins = 0;
 
   @override
   void initState() {
@@ -49,6 +52,11 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       }
       moveHistory.add([row, col]);
       if (checkWin()) {
+        if (currentPlayer == 'X') {
+            xWins++;
+          } else {
+            oWins++;
+          }
         showWinDialog();
       } else {
         currentPlayer = currentPlayer == 'X'? 'O' : 'X';
@@ -90,8 +98,8 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Center(child:  Text('Player $currentPlayer wins!'),)
-,          actions: <Widget>[
+          title: Center(child:  Text('Player $currentPlayer wins!'),),
+          actions: <Widget>[
             Center(child:
             ElevatedButton(
               child: Text('Play Again'),
@@ -110,12 +118,18 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tic Tac Toe Mandkah'),
+        title: Text('2 Player XO3'),
       ),
-      body: GridView.builder(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [ Text('X Wins: $xWins, O Wins: $oWins', style: TextStyle(fontSize: 24)),
+          SizedBox(height: 20),
+      Center(child: SizedBox(
+        width: 300, // Adjust the width and height as needed
+        height: 300,
+      child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-        ),
+          crossAxisCount: 3,),
         itemCount: 9,
         itemBuilder: (context, index) {
           final row = index ~/ 3;
@@ -134,7 +148,9 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
               ),
             ),
           );
-        },
+        },)
+        ),)
+        ],
       ),
     );
   }

@@ -8,17 +8,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: TicTacToeGame(),
+      home: NTicTacToeGame(),
     );
   }
 }
 
-class TicTacToeGame extends StatefulWidget {
+class NTicTacToeGame extends StatefulWidget {
   @override
-  _TicTacToeGameState createState() => _TicTacToeGameState();
+  _NTicTacToeGameState createState() => _NTicTacToeGameState();
 }
 // check for the games state
-class _TicTacToeGameState extends State<TicTacToeGame> {
+class _NTicTacToeGameState extends State<NTicTacToeGame> {
   List<List<String>> board = List.generate(3, (_) => List.filled(3, ''));
   String currentPlayer = 'X';
   @override
