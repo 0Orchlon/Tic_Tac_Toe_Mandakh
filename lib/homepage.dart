@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'c2player.dart'; // Import the game
 
 void main() {
@@ -26,16 +27,50 @@ class HomePage extends StatelessWidget {
         title: Text('Home Page'),
       ),
       body: Center(
-        child: ElevatedButton(
-          child: Text('Play'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => TicTacToeGame()),
-            );
-          },
+       child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Welcome to Tic Tac Toe!',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 20.0),
+              ElevatedButton(
+                onPressed: () {
+                  // Navigate to the game screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TicTacToeGame()),
+                  );
+                },
+                child: Text('Start Game'),
+              ),
+              SizedBox(height: 10.0),
+              ElevatedButton(
+                onPressed: () {
+                  // Navigate to the game screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TicTacToeGame()),
+                  );
+                },
+                child: Text('Start 2 player Game'),
+              ),
+              SizedBox(height: 10.0),
+              ElevatedButton(
+                onPressed: () {
+                  
+                 SystemNavigator.pop();
+                },
+                child: Text('exit'),
+              ),
+            ],
+          
         ),
       ),
     );
   }
-}
+} 
