@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: TicTacToeGame(),
     );
   }
@@ -90,8 +91,8 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Center(child:  Text('Player $currentPlayer wins!'),)
-,          actions: <Widget>[
+          title: Center(child:  Text('Player $currentPlayer wins!'),),
+          actions: <Widget>[
             Center(child:
             ElevatedButton(
               child: Text('Play Again'),
@@ -105,17 +106,26 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       },
     );
   }
+  void Xwin(){
+    
+  }
+  void Owin(){
+
+  }
+
 // The Interface
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tic Tac Toe Mandkah'),
+        title: Text('2 Player XO3'),
       ),
-      body: GridView.builder(
+      body: 
+      
+      
+      GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-        ),
+          crossAxisCount: 3,),
         itemCount: 9,
         itemBuilder: (context, index) {
           final row = index ~/ 3;
