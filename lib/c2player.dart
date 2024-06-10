@@ -124,8 +124,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [ Text('X Wins: $xWins, O Wins: $oWins', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 20),
+        children: [  Text('X Wins: $xWins, O Wins: $oWins', style: TextStyle(fontSize: 24),),
       Center(child: SizedBox(
         width: 300, // Adjust the width and height as needed
         height: 300,
