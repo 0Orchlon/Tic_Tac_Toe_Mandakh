@@ -143,7 +143,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
             decoration: currentPlayer == 'X'
                 ? BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(width: 10, color: Colors.purple))
+                  border: Border.all(width: 9, color: Colors.green))
                 : null,
               child: Image.asset('../assets/pictures/xlocal.png', width: 30, height: 30, fit: BoxFit.contain),
             ),
@@ -157,7 +157,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
               decoration: currentPlayer == 'O'
                 ? BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(width: 10, color: Colors.purple))
+                  border: Border.all(width: 9, color: Colors.green))
                 : null,
               child: Image.asset('../assets/pictures/olocal.png', width: 30, height: 30, fit: BoxFit.contain),
             ),
