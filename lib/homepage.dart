@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'c2player.dart'; // Import the game
-
+import 'c1player.dart';
 void main() {
   runApp(MyApp());
 }
@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
         title: Text('Tic Tac Toe Mandkah'),
       ),
       body: Center(
-       child: Column(
+        child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
                   // Navigate to the game screen
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => TicTacToeGame()),
+                    MaterialPageRoute(builder: (context) => TicTacToeGame1()),
     
                   );
                 },
