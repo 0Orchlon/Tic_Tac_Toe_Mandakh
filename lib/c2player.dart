@@ -125,7 +125,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       body:  Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('../assets/pictures/background.gif'),
+          image: AssetImage('../assets/pictures/background1.gif'),
           fit: BoxFit.cover,
         ),
       ),
@@ -166,7 +166,6 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
         ),
       ],
     ),
-    
       Center(child: SizedBox(
         width: 300, // Adjust the width and height as needed
         height: 300,
