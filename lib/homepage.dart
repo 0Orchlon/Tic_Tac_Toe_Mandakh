@@ -46,9 +46,17 @@ class HomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => TicTacToeGame()),
+    
                   );
                 },
                 child: Text('Start Game'),
+                style: ElevatedButton.styleFrom(
+                 backgroundColor: Colors.blue,
+                 shape: BeveledRectangleBorder(
+                 borderRadius: BorderRadius.circular(20), // Rounded corners
+                    ),
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), // Button padding
+                ),
               ),
               SizedBox(height: 10.0),
               ElevatedButton(
@@ -60,6 +68,13 @@ class HomePage extends StatelessWidget {
                   );
                 },
                 child: Text('Start 2 player Game'),
+                style: ElevatedButton.styleFrom(
+                 backgroundColor: Colors.orange,
+                 shape: BeveledRectangleBorder(
+                 borderRadius: BorderRadius.circular(20), // Rounded corners
+                    ),
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), // Button padding
+                ),
               ),
               SizedBox(height: 10.0),
               ElevatedButton(
@@ -68,6 +83,13 @@ class HomePage extends StatelessWidget {
                  SystemNavigator.pop();
                 },
                 child: Text('exit'),
+                style: ElevatedButton.styleFrom(
+                 backgroundColor: Colors.grey,
+                 shape: BeveledRectangleBorder(
+                 borderRadius: BorderRadius.circular(20), // Rounded corners
+                    ),
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), // Button padding
+                ),
               ),
             ],
           // hlep me
