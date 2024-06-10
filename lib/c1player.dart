@@ -202,7 +202,6 @@ int minimax(int depth, bool isMaximizing) {
   }
 }
 
-// Make a move based on the minimax algorithm
 void makeBotMove() {
   if (moveCount == 0) {
     // Make a random move for the bot's first move
@@ -259,14 +258,14 @@ void makeBotMove() {
       }
     });
   } else {
-    // Check if the player can win in the next move
+    // Check if the bot can win in the next move
     bool canWin = false;
     int winRow = -1;
     int winCol = -1;
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
         if (board[i][j] == '') {
-          board[i][j] = 'X';
+          board[i][j] = 'O';
           if (checkWin()) {
             canWin = true;
             winRow = i;
@@ -277,7 +276,7 @@ void makeBotMove() {
       }
     }
     if (canWin) {
-      // Block the player's winning move
+      // Make the winning move
       setState(() {
         board[winRow][winCol] = 'O';
         moveCount++;
@@ -293,64 +292,62 @@ void makeBotMove() {
         }
       });
     } else {
-      // Make a move based on the minimax algorithm
-      int bestScore = -1000;
-      int bestRow = -1;
-      int bestCol = -1;
+      // Check if the player can win in the next move
+      bool canBlock = false;
+      int blockRow = -1;
+      int blockCol = -1;
       for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
           if (board[i][j] == '') {
-            board[i][j] = 'O';
-            int score = minimax(0, false);
-            board[i][j] = '';
-            if (score > bestScore) {
-              bestScore = score;
-              bestRow = i;
-              bestCol = j;
+            board[i][j] = 'X';
+            if (checkWin()) {
+              canBlock = true;
+              blockRow = i;
+              blockCol = j;
             }
+            board[i][j] = '';
           }
         }
       }
-      Future.delayed(Duration(milliseconds: 300), () {
-        if (bestRow == -1 && bestCol == -1) {
-          // Make a random move if no move is made within 600 milliseconds
-          int row = Random().nextInt(3);
-          int col = Random().nextInt(3);
-          while (board[row][col] != '') {
-            row = Random().nextInt(3);
-            col = Random().nextInt(3);
+      if (canBlock) {
+        // Block the player's winning move
+        setState(() {
+          board[blockRow][blockCol] = 'O';
+          moveCount++;
+          if (moveHistory.length >= 6) {
+            removeFirstMove();
           }
-          setState(() {
-            board[row][col] = 'O';
-            moveCount++;
-            if (moveHistory.length >= 6) {
-              removeFirstMove();
-            }
-            moveHistory.add([row, col]);
-            if (checkWin()) {
-              oWins++;
-              showWinDialog();
-            } else {
-              currentPlayer = 'X';
-            }
-          });
-        } else {
-          setState(() {
-            board[bestRow][bestCol] = 'O';
-            moveCount++;
-            if (moveHistory.length >= 6) {
-              removeFirstMove();
-            }
-            moveHistory.add([bestRow, bestCol]);
-            if (checkWin()) {
-              oWins++;
-              showWinDialog();
-            } else {
-              currentPlayer = 'X';
-            }
-          });
+          moveHistory.add([blockRow, blockCol]);
+          if (checkWin()) {
+            oWins++;
+            showWinDialog();
+          } else {
+            currentPlayer = 'X';
+          }
+        });
+      } else {
+        // Make a random move
+        int row = Random().nextInt(3);
+        int col = Random().nextInt(3);
+        while (board[row][col] != '') {
+          row = Random().nextInt(3);
+          col = Random().nextInt(3);
         }
-      });
+        setState(() {
+          board[row][col] = 'O';
+          moveCount++;
+          if (moveHistory.length >= 6) {
+            removeFirstMove();
+          }
+          moveHistory.add([row, col]);
+          if (checkWin()) {
+            oWins++;
+            showWinDialog();
+          } else {
+            currentPlayer = 'X';
+          }
+        });
+      }
     }
   }
 }
@@ -359,7 +356,7 @@ void makeBotMove() {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('1 Player XO3'),
+        title: Text('Bot O3'),
       ),
       body:  Container(
       decoration: BoxDecoration(
