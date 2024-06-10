@@ -34,6 +34,7 @@ class HomePage extends StatelessWidget {
               Text(
                 'Welcome to Tic Tac Toe!',
                 style: TextStyle(
+                  color: Colors.blue,
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                 ),
