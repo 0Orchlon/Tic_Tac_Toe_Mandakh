@@ -64,7 +64,7 @@ void onCellTapped(int row, int col) {
         currentPlayer = currentPlayer == 'X'? 'O' : 'X';
         if (currentPlayer == 'O') {
           // Make a move for the O player
-          Future.delayed(Duration(milliseconds: 500), () {
+          Future.delayed(Duration(milliseconds: 200), () {
             makeBotMove();
           });
         }
@@ -227,7 +227,7 @@ void makeBotMove() {
       }
     });
     // Make the bot's second move immediately
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(Duration(milliseconds: 200), () {
       makeBotMove();
     });
   } else if (moveCount == 1) {
@@ -311,7 +311,7 @@ void makeBotMove() {
           }
         }
       }
-      Future.delayed(Duration(milliseconds: 600), () {
+      Future.delayed(Duration(milliseconds: 300), () {
         if (bestRow == -1 && bestCol == -1) {
           // Make a random move if no move is made within 600 milliseconds
           int row = Random().nextInt(3);
