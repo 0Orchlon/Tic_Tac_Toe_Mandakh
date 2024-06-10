@@ -138,6 +138,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       children: [
         Column(
           children: [
+          // Text('Current Turn: ${currentPlayer == 'X'? 'X' : 'O'}', style: TextStyle(fontSize: 24),),
             Container(
             decoration: currentPlayer == 'X'
                 ? BoxDecoration(
@@ -149,7 +150,6 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
             Text('X Wins: $xWins', style: TextStyle(fontSize: 24),),
           ],
         ),
-          Text('Current Turn: ${currentPlayer == 'X'? 'X' : 'O'}', style: TextStyle(fontSize: 24),),
         SizedBox(width: 20), // Add some space between the two columns
         Column(
           children: [
