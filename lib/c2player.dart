@@ -124,7 +124,12 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [  Text('X Wins: $xWins, O Wins: $oWins', style: TextStyle(fontSize: 24),),
+        children: [
+          Text('Current Turn: ', style: TextStyle(fontSize: 24),),
+            currentPlayer == 'X'
+              ? Image.asset('../assets/pictures/xlocal.png', width: 30, height: 30, fit: BoxFit.contain)
+              : Image.asset('../assets/pictures/olocal.png', width: 30, height: 30, fit: BoxFit.contain), // Add this line  
+          Text('X Wins: $xWins, O Wins: $oWins', style: TextStyle(fontSize: 24),),
       Center(child: SizedBox(
         width: 300, // Adjust the width and height as needed
         height: 300,
