@@ -122,7 +122,15 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       appBar: AppBar(
         title: Text('2 Player XO3'),
       ),
-      body: Column(
+      body:  Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('../assets/pictures/background.gif'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: 
+      Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('Current Turn: ', style: TextStyle(fontSize: 24),),
@@ -144,6 +152,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       onTap: () => onCellTapped(row, col),
       child: Container(
         decoration: BoxDecoration(
+          color: Colors.grey[200], // Change the background color
           border: Border.all(),
         ),
         child: Center(
@@ -167,6 +176,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
 )
         ),)
         ],),
+    )
     );
   }
 }
