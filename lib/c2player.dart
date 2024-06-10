@@ -94,25 +94,27 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
   }
 // Win Dialog
   void showWinDialog() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Center(child:  Text('Player $currentPlayer wins!'),),
-          actions: <Widget>[
-            Center(child:
-            ElevatedButton(
+  showDialog(
+    context: context,
+    barrierDismissible: false, // Prevent dialog from being dismissed when clicking outside
+    builder: (context) {
+      return AlertDialog(
+        title: AbsorbPointer(child: Center(child: Text('Player $currentPlayer wins!'))),
+        actions: <Widget>[
+          Center(
+            child: ElevatedButton(
               child: Text('Play Again'),
               onPressed: () {
                 initializeGame();
                 Navigator.of(context).pop();
               },
-            )),
-          ],
-        );
-      },
-    );
-  }
+            ),
+          ),
+        ],
+      );
+    },
+  );
+}
 // The Interface
   @override
   Widget build(BuildContext context) {
@@ -120,38 +122,61 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       appBar: AppBar(
         title: Text('2 Player XO3'),
       ),
-      body: Column(
+      body:  Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('../assets/pictures/background.gif'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: 
+      Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [ Text('X Wins: $xWins, O Wins: $oWins', style: TextStyle(fontSize: 24)),
-          SizedBox(height: 20),
+        children: [
+          Text('Current Turn: ', style: TextStyle(fontSize: 24),),
+            currentPlayer == 'X'
+              ? Image.asset('../assets/pictures/xlocal.png', width: 30, height: 30, fit: BoxFit.contain)
+              : Image.asset('../assets/pictures/olocal.png', width: 30, height: 30, fit: BoxFit.contain), // Add this line  
+          Text('X Wins: $xWins, O Wins: $oWins', style: TextStyle(fontSize: 24),),
       Center(child: SizedBox(
         width: 300, // Adjust the width and height as needed
         height: 300,
       child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,),
-        itemCount: 9,
-        itemBuilder: (context, index) {
-          final row = index ~/ 3;
-          final col = index % 3;
-          return GestureDetector(
-            onTap: () => onCellTapped(row, col),
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(),
-              ),
-              child: Center(
-                child: Text(
-                  board[row][col],
-                  style: TextStyle(fontSize: 48),
-                ),
-              ),
-            ),
-          );
-        },)
-        ),)
-        ],
+  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 3,),
+  itemCount: 9,
+  itemBuilder: (context, index) { 
+    final row = index ~/ 3;
+    final col = index % 3;
+    return GestureDetector(
+      onTap: () => onCellTapped(row, col),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey[200], // Change the background color
+          border: Border.all(),
+        ),
+        child: Center(
+          child: board[row][col].isEmpty
+    ? Text('')
+    : board[row][col] == 'X'
+      ? SizedBox(
+          width: 60,
+          height: 60,
+          child: Image.asset('../assets/pictures/xlocal.png', fit: BoxFit.contain),
+        )
+      : SizedBox(
+          width: 60,
+          height: 60,
+          child: Image.asset('../assets/pictures/olocal.png', fit: BoxFit.contain),
+        ),
+)
       ),
+    );
+  },
+)
+        ),)
+        ],),
+    )
     );
   }
 }
