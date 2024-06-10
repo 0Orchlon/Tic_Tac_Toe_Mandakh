@@ -147,7 +147,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
                 : null,
               child: Image.asset('../assets/pictures/xlocal.png', width: 30, height: 30, fit: BoxFit.contain),
             ),
-            Text('X Wins: $xWins', style: TextStyle(fontSize: 24),),
+            Text('Wins: $xWins', style: TextStyle(fontSize: 24),),
           ],
         ),
         SizedBox(width: 20), // Add some space between the two columns
@@ -161,7 +161,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
                 : null,
               child: Image.asset('../assets/pictures/olocal.png', width: 30, height: 30, fit: BoxFit.contain),
             ),
-            Text('O Wins: $oWins', style: TextStyle(fontSize: 24),),
+            Text('Wins: $oWins', style: TextStyle(fontSize: 24),),
           ],
         ),
       ],
