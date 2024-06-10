@@ -149,12 +149,12 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       ? SizedBox(
           width: 60,
           height: 60,
-          child: Image.asset('assets/pictures/xlocal.png', fit: BoxFit.contain),
+          child: Image.asset('../assets/pictures/xlocal.png', fit: BoxFit.contain),
         )
       : SizedBox(
           width: 60,
           height: 60,
-          child: Image.asset('assets/pictures/olocal.png', fit: BoxFit.contain),
+          child: Image.asset('../assets/pictures/olocal.png', fit: BoxFit.contain),
         ),
 )
       ),
