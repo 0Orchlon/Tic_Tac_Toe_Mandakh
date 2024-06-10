@@ -94,25 +94,27 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
   }
 // Win Dialog
   void showWinDialog() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Center(child:  Text('Player $currentPlayer wins!'),),
-          actions: <Widget>[
-            Center(child:
-            ElevatedButton(
+  showDialog(
+    context: context,
+    barrierDismissible: false, // Prevent dialog from being dismissed when clicking outside
+    builder: (context) {
+      return AlertDialog(
+        title: AbsorbPointer(child: Center(child: Text('Player $currentPlayer wins!'))),
+        actions: <Widget>[
+          Center(
+            child: ElevatedButton(
               child: Text('Play Again'),
               onPressed: () {
                 initializeGame();
                 Navigator.of(context).pop();
               },
-            )),
-          ],
-        );
-      },
-    );
-  }
+            ),
+          ),
+        ],
+      );
+    },
+  );
+}
 // The Interface
   @override
   Widget build(BuildContext context) {
@@ -128,30 +130,39 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
         width: 300, // Adjust the width and height as needed
         height: 300,
       child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,),
-        itemCount: 9,
-        itemBuilder: (context, index) {
-          final row = index ~/ 3;
-          final col = index % 3;
-          return GestureDetector(
-            onTap: () => onCellTapped(row, col),
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(),
-              ),
-              child: Center(
-                child: Text(
-                  board[row][col],
-                  style: TextStyle(fontSize: 48),
-                ),
-              ),
-            ),
-          );
-        },)
-        ),)
-        ],
+  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 3,),
+  itemCount: 9,
+  itemBuilder: (context, index) { 
+    final row = index ~/ 3;
+    final col = index % 3;
+    return GestureDetector(
+      onTap: () => onCellTapped(row, col),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(),
+        ),
+        child: Center(
+          child: board[row][col].isEmpty
+    ? Text('')
+    : board[row][col] == 'X'
+      ? SizedBox(
+          width: 60,
+          height: 60,
+          child: Image.asset('assets/pictures/xlocal.png', fit: BoxFit.contain),
+        )
+      : SizedBox(
+          width: 60,
+          height: 60,
+          child: Image.asset('assets/pictures/olocal.png', fit: BoxFit.contain),
+        ),
+)
       ),
+    );
+  },
+)
+        ),)
+        ],),
     );
   }
 }
