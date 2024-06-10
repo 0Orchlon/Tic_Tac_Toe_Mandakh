@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -42,7 +44,7 @@ class _TicTacToeGame1State extends State<TicTacToeGame1> {
     });
   }
 // place shape
-  void onCellTapped(int row, int col) {
+void onCellTapped(int row, int col) {
   if (board[row][col].isEmpty) {
     setState(() {
       board[row][col] = currentPlayer;
@@ -53,13 +55,19 @@ class _TicTacToeGame1State extends State<TicTacToeGame1> {
       moveHistory.add([row, col]);
       if (checkWin()) {
         if (currentPlayer == 'X') {
-            xWins++;
-          } else {
-            oWins++;
-          }
+          xWins++;
+        } else {
+          oWins++;
+        }
         showWinDialog();
       } else {
         currentPlayer = currentPlayer == 'X'? 'O' : 'X';
+        if (currentPlayer == 'O') {
+          // Make a move for the O player
+          Future.delayed(Duration(milliseconds: 500), () {
+            makeBotMove();
+          });
+        }
       }
     });
   }
@@ -114,6 +122,237 @@ class _TicTacToeGame1State extends State<TicTacToeGame1> {
       );
     },
   );
+}
+// Evaluate the game state
+int evaluateGameState() {
+  // Check for win conditions
+  for (int i = 0; i < 3; i++) {
+    if (board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0] != '') {
+      return board[i][0] == 'X' ? -1 : 1;
+    }
+    if (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] != '') {
+      return board[0][i] == 'X' ? -1 : 1;
+    }
+  }
+  if (board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] != '') {
+    return board[0][0] == 'X' ? -1 : 1;
+  }
+  if (board[0][2] == board[1][1] && board[0][2] == board[2][0] && board[0][2] != '') {
+    return board[0][2] == 'X' ? -1 : 1;
+  }
+  // If no one has won, return 0
+  return 0;
+}
+// Check if the player can win in the next move
+bool canPlayerWin(int row, int col) {
+  // Check for win conditions
+  for (int i = 0; i < 3; i++) {
+    if (board[i][0] == 'X' && board[i][1] == 'X' && board[i][2] == '') {
+      return true;
+    }
+    if (board[0][i] == 'X' && board[1][i] == 'X' && board[2][i] == '') {
+      return true;
+    }
+  }
+  if (board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == '') {
+    return true;
+  }
+  if (board[0][2] == 'X' && board[1][1] == 'X' && board[2][0] == '') {
+    return true;
+  }
+  return false;
+}
+// Minimax algorithm
+int minimax(int depth, bool isMaximizing) {
+  int score = evaluateGameState();
+  if (score!= 0) {
+    return score;
+  }
+  if (isMaximizing) {
+    int bestScore = -1000;
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        if (board[i][j] == '') {
+          board[i][j] = 'O';
+          int score = minimax(depth + 1, false);
+          board[i][j] = '';
+          bestScore = max(bestScore, score);
+          // Check if the player can win in the next move
+          if (canPlayerWin(i, j)) {
+            // Block the player's move if possible
+            bestScore = -1000;
+          }
+        }
+      }
+    }
+    return bestScore;
+  } else {
+    int bestScore = 1000;
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        if (board[i][j] == '') {
+          board[i][j] = 'X';
+          int score = minimax(depth + 1, true);
+          board[i][j] = '';
+          bestScore = min(bestScore, score);
+        }
+      }
+    }
+    return bestScore;
+  }
+}
+
+// Make a move based on the minimax algorithm
+void makeBotMove() {
+  if (moveCount == 0) {
+    // Make a random move for the bot's first move
+    int row = Random().nextInt(3);
+    int col = Random().nextInt(3);
+    while (board[row][col] != '') {
+      row = Random().nextInt(3);
+      col = Random().nextInt(3);
+    }
+    setState(() {
+      board[row][col] = 'O';
+      moveCount++;
+      if (moveHistory.length >= 6) {
+        removeFirstMove();
+      }
+      moveHistory.add([row, col]);
+      if (checkWin()) {
+        oWins++;
+        showWinDialog();
+      } else {
+        currentPlayer = 'X';
+      }
+    });
+    // Make the bot's second move immediately
+    Future.delayed(Duration(milliseconds: 500), () {
+      makeBotMove();
+    });
+  } else if (moveCount == 1) {
+    // Make a strategic move for the bot's second move
+    int row, col;
+    if (board[1][1] == '') {
+      row = 1;
+      col = 1;
+    } else {
+      row = Random().nextInt(3);
+      col = Random().nextInt(3);
+      while (board[row][col] != '') {
+        row = Random().nextInt(3);
+        col = Random().nextInt(3);
+      }
+    }
+    setState(() {
+      board[row][col] = 'O';
+      moveCount++;
+      if (moveHistory.length >= 6) {
+        removeFirstMove();
+      }
+      moveHistory.add([row, col]);
+      if (checkWin()) {
+        oWins++;
+        showWinDialog();
+      } else {
+        currentPlayer = 'X';
+      }
+    });
+  } else {
+    // Check if the player can win in the next move
+    bool canWin = false;
+    int winRow = -1;
+    int winCol = -1;
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        if (board[i][j] == '') {
+          board[i][j] = 'X';
+          if (checkWin()) {
+            canWin = true;
+            winRow = i;
+            winCol = j;
+          }
+          board[i][j] = '';
+        }
+      }
+    }
+    if (canWin) {
+      // Block the player's winning move
+      setState(() {
+        board[winRow][winCol] = 'O';
+        moveCount++;
+        if (moveHistory.length >= 6) {
+          removeFirstMove();
+        }
+        moveHistory.add([winRow, winCol]);
+        if (checkWin()) {
+          oWins++;
+          showWinDialog();
+        } else {
+          currentPlayer = 'X';
+        }
+      });
+    } else {
+      // Make a move based on the minimax algorithm
+      int bestScore = -1000;
+      int bestRow = -1;
+      int bestCol = -1;
+      for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+          if (board[i][j] == '') {
+            board[i][j] = 'O';
+            int score = minimax(0, false);
+            board[i][j] = '';
+            if (score > bestScore) {
+              bestScore = score;
+              bestRow = i;
+              bestCol = j;
+            }
+          }
+        }
+      }
+      Future.delayed(Duration(milliseconds: 600), () {
+        if (bestRow == -1 && bestCol == -1) {
+          // Make a random move if no move is made within 600 milliseconds
+          int row = Random().nextInt(3);
+          int col = Random().nextInt(3);
+          while (board[row][col] != '') {
+            row = Random().nextInt(3);
+            col = Random().nextInt(3);
+          }
+          setState(() {
+            board[row][col] = 'O';
+            moveCount++;
+            if (moveHistory.length >= 6) {
+              removeFirstMove();
+            }
+            moveHistory.add([row, col]);
+            if (checkWin()) {
+              oWins++;
+              showWinDialog();
+            } else {
+              currentPlayer = 'X';
+            }
+          });
+        } else {
+          setState(() {
+            board[bestRow][bestCol] = 'O';
+            moveCount++;
+            if (moveHistory.length >= 6) {
+              removeFirstMove();
+            }
+            moveHistory.add([bestRow, bestCol]);
+            if (checkWin()) {
+              oWins++;
+              showWinDialog();
+            } else {
+              currentPlayer = 'X';
+            }
+          });
+        }
+      });
+    }
+  }
 }
 // The Interface
   @override
