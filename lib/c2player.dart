@@ -133,11 +133,40 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Current Turn: ', style: TextStyle(fontSize: 24),),
-            currentPlayer == 'X'
-              ? Image.asset('../assets/pictures/xlocal.png', width: 30, height: 30, fit: BoxFit.contain)
-              : Image.asset('../assets/pictures/olocal.png', width: 30, height: 30, fit: BoxFit.contain), // Add this line  
-          Text('X Wins: $xWins, O Wins: $oWins', style: TextStyle(fontSize: 24),),
+          Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
+          children: [
+            Container(
+            decoration: currentPlayer == 'X'
+                ? BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(width: 10, color: Colors.purple))
+                : null,
+              child: Image.asset('../assets/pictures/xlocal.png', width: 30, height: 30, fit: BoxFit.contain),
+            ),
+            Text('X Wins: $xWins', style: TextStyle(fontSize: 24),),
+          ],
+        ),
+          Text('Current Turn: ${currentPlayer == 'X'? 'X' : 'O'}', style: TextStyle(fontSize: 24),),
+        SizedBox(width: 20), // Add some space between the two columns
+        Column(
+          children: [
+            Container(
+              decoration: currentPlayer == 'O'
+                ? BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(width: 10, color: Colors.purple))
+                : null,
+              child: Image.asset('../assets/pictures/olocal.png', width: 30, height: 30, fit: BoxFit.contain),
+            ),
+            Text('O Wins: $oWins', style: TextStyle(fontSize: 24),),
+          ],
+        ),
+      ],
+    ),
+    
       Center(child: SizedBox(
         width: 300, // Adjust the width and height as needed
         height: 300,
