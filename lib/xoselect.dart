@@ -42,6 +42,10 @@ class xoselect extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                ClipOval(
+                  child: Material(
+                  color: Colors.transparent, 
+                  child: 
                 InkWell(
                   onTap: () {Navigator.push(
                     context,
@@ -52,6 +56,7 @@ class xoselect extends StatelessWidget {
                     height: 100,
                     width: 100,
                     decoration: BoxDecoration(
+                      shape: BoxShape.circle,
                       image: DecorationImage(
                         image: AssetImage('../assets/pictures/xlocal.png'),
                         fit: BoxFit.cover,
@@ -59,7 +64,29 @@ class xoselect extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 20), // Add some space between the two images
+                ),
+                ),
+                ClipOval(
+                  child: Material(
+                  color: Colors.transparent, 
+                  child: 
+                InkWell(
+                  onTap: null, // Handle your callback.
+                  splashColor: Colors.transparent,
+                  child: Ink(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                ),
+                ),
+                ClipOval(
+                  child: Material(
+                  color: Colors.transparent, 
+                  child: 
                 InkWell(
                   onTap: () {Navigator.push(
                     context,
@@ -70,6 +97,7 @@ class xoselect extends StatelessWidget {
                     height: 100,
                     width: 100,
                     decoration: BoxDecoration(
+                      shape: BoxShape.circle,
                       image: DecorationImage(
                         image: AssetImage('../assets/pictures/olocal.png'),
                         fit: BoxFit.cover,
@@ -77,6 +105,8 @@ class xoselect extends StatelessWidget {
                     ),
                   ),
                 ),
+                ),
+                )
               ],
             ),
           ],
