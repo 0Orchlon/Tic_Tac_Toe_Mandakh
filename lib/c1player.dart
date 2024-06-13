@@ -64,7 +64,7 @@ void onCellTapped(int row, int col) {
         currentPlayer = currentPlayer == 'X'? 'O' : 'X';
         if (currentPlayer == 'O') {
           // Make a move for the O player
-          Future.delayed(Duration(milliseconds: 200), () {
+          Future.delayed(Duration(milliseconds: 000), () {
             makeBotMove();
           });
         }
