@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'c2player.dart'; // Import the game
-import 'c1player.dart';
+import 'xoselect.dart';
 void main() {
   runApp(MyApp());
 }
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
                   // Navigate to the game screen
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => TicTacToeGame1()),
+                    MaterialPageRoute(builder: (context) => xoselect()),
     
                   );
                 },
