@@ -339,11 +339,11 @@ void makeBotMove() {
             decoration: currentPlayer == 'X'
                 ? BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(width: 9, color: Colors.green))
+                  border: Border.all(width: 4, color: Colors.green))
                 : null,
               child: Image.asset('../assets/pictures/xlocal.png', width: 30, height: 30, fit: BoxFit.contain),
             ),
-            Text('Wins: $xWins', style: TextStyle(fontSize: 24),),
+            Text('Wins: $xWins', style: TextStyle(fontSize: 24, color: Colors.white),),
           ],
         ),
         SizedBox(width: 20), // Add some space between the two columns
@@ -353,11 +353,11 @@ void makeBotMove() {
               decoration: currentPlayer == 'O'
                 ? BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(width: 9, color: Colors.green))
+                  border: Border.all(width: 4, color: Colors.green))
                 : null,
               child: Image.asset('../assets/pictures/olocal.png', width: 30, height: 30, fit: BoxFit.contain),
             ),
-            Text('Wins: $oWins', style: TextStyle(fontSize: 24),),
+            Text('Wins: $oWins', style: TextStyle(fontSize: 24, color: Colors.white),),
           ],
         ),
       ],

@@ -49,10 +49,10 @@ class HomePage extends StatelessWidget {
     
                   );
                 },
-                child: Text('Start Game'),
+                child: Text('Start Game', style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
-                 backgroundColor: Colors.blue,
-                 shape: BeveledRectangleBorder(
+                  backgroundColor: Colors.blue,
+                  shape: BeveledRectangleBorder(
                  borderRadius: BorderRadius.circular(20), // Rounded corners
                     ),
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), // Button padding
@@ -67,10 +67,10 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => TicTacToeGame()),
                   );
                 },
-                child: Text('Start 2 player Game'),
+                child: Text('Start 2 player Game', style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
-                 backgroundColor: Colors.orange,
-                 shape: BeveledRectangleBorder(
+                  backgroundColor: Colors.orange,
+                  shape: BeveledRectangleBorder(
                  borderRadius: BorderRadius.circular(20), // Rounded corners
                     ),
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), // Button padding
@@ -80,12 +80,12 @@ class HomePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   
-                 SystemNavigator.pop();
+                  SystemNavigator.pop();
                 },
-                child: Text('exit'),
+                child: Text('exit', style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
-                 backgroundColor: Colors.grey,
-                 shape: BeveledRectangleBorder(
+                  backgroundColor: Colors.grey,
+                  shape: BeveledRectangleBorder(
                  borderRadius: BorderRadius.circular(20), // Rounded corners
                     ),
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), // Button padding

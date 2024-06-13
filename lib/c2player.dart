@@ -20,7 +20,7 @@ class TicTacToeGame extends StatefulWidget {
 }
 
 class _TicTacToeGameState extends State<TicTacToeGame> {
-  List<List<String>> board = List.generate(3, (_) => List.filled(3, ''));
+  List<List<String>> board = List.generate(5, (_) => List.filled(5, ''));
   String currentPlayer = 'X';
   int moveCount = 0;
   List<List<int>> moveHistory = [];
@@ -35,7 +35,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
 // start the game
   void initializeGame() {
     setState(() {
-      board = List.generate(3, (_) => List.filled(3, ''));
+      board = List.generate(5, (_) => List.filled(5, ''));
       currentPlayer = 'X';
       moveCount = 0;
       moveHistory.clear();
@@ -47,7 +47,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     setState(() {
       board[row][col] = currentPlayer;
       moveCount++;
-      if (moveHistory.length >= 6) {
+      if (moveHistory.length >= 10) {
         removeFirstMove();
       }
       moveHistory.add([row, col]);
@@ -76,22 +76,58 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
 }
 // Check for win
   bool checkWin() {
-    for (int i = 0; i < 3; i++) {
-      if (board[i][0]!= '' && board[i][0] == board[i][1] && board[i][0] == board[i][2]) {
+  // Check rows
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j <= 5 - 5; j++) {
+      if (board[i][j] != '' &&
+          board[i][j] == board[i][j + 1] &&
+          board[i][j] == board[i][j + 2] &&
+          board[i][j] == board[i][j + 3] &&
+          board[i][j] == board[i][j + 4]) {
         return true;
       }
-      if (board[0][i]!= '' && board[0][i] == board[1][i] && board[0][i] == board[2][i]) {
-        return true;
-      }
     }
-    if (board[0][0]!= '' && board[0][0] == board[1][1] && board[0][0] == board[2][2]) {
-      return true;
-    }
-    if (board[0][2]!= '' && board[0][2] == board[1][1] && board[0][2] == board[2][0]) {
-      return true;
-    }
-    return false;
   }
+
+  // Check columns
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j <= 5 - 5; j++) {
+      if (board[j][i] != '' &&
+          board[j][i] == board[j + 1][i] &&
+          board[j][i] == board[j + 2][i] &&
+          board[j][i] == board[j + 3][i] &&
+          board[j][i] == board[j + 4][i]) {
+        return true;
+      }
+    }
+  }
+
+  // Check diagonals (top-left to bottom-right)
+  for (int i = 0; i <= 5 - 5; i++) {
+    for (int j = 0; j <= 5 - 5; j++) {
+      if (board[i][j] != '' &&
+          board[i][j] == board[i + 1][j + 1] &&
+          board[i][j] == board[i + 2][j + 2] &&
+          board[i][j] == board[i + 3][j + 3] &&
+          board[i][j] == board[i + 4][j + 4]) {
+        return true;
+      }
+    }
+  }
+
+  // Check diagonals (bottom-left to top-right)
+  for (int i = 0; i <= 5 - 5; i++) {
+    for (int j = 4; j >= 4 - (5 - 5); j--) {
+      if (board[i][j] != '' &&
+          board[i][j] == board[i + 1][j - 1] && board[i][j] == board[i + 2][j - 2] && board[i][j] == board[i + 3][j - 3] && board[i][j] == board[i + 4][j - 4]) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 // Win Dialog
   void showWinDialog() {
   showDialog(
@@ -143,25 +179,25 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
             decoration: currentPlayer == 'X'
                 ? BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(width: 9, color: Colors.green))
+                  border: Border.all(width: 3, color: Colors.green))
                 : null,
-              child: Image.asset('../assets/pictures/xlocal.png', width: 30, height: 30, fit: BoxFit.contain),
+              child: Image.asset('../assets/pictures/xlocal.png', width: 50, height: 50, fit: BoxFit.contain),
             ),
-            Text('Wins: $xWins', style: TextStyle(fontSize: 24),),
+            Text('Wins: $xWins', style: TextStyle(fontSize: 24, color: Colors.white),),
           ],
         ),
-        SizedBox(width: 20), // Add some space between the two columns
+        SizedBox(width: 25), // Add some space between the two columns
         Column(
           children: [
             Container(
               decoration: currentPlayer == 'O'
                 ? BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(width: 9, color: Colors.green))
+                  border: Border.all(width: 3, color: Colors.green))
                 : null,
-              child: Image.asset('../assets/pictures/olocal.png', width: 30, height: 30, fit: BoxFit.contain),
+              child: Image.asset('../assets/pictures/olocal.png', width: 50, height: 50, fit: BoxFit.contain),
             ),
-            Text('Wins: $oWins', style: TextStyle(fontSize: 24),),
+            Text('Wins: $oWins', style: TextStyle(fontSize: 24, color: Colors.white),),
           ],
         ),
       ],
@@ -171,11 +207,11 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
         height: 300,
       child: GridView.builder(
   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    crossAxisCount: 3,),
-  itemCount: 9,
+    crossAxisCount: 5,),
+  itemCount: 25,
   itemBuilder: (context, index) { 
-    final row = index ~/ 3;
-    final col = index % 3;
+    final row = index ~/ 5;
+    final col = index % 5;
     return GestureDetector(
       onTap: () => onCellTapped(row, col),
       child: Container(
