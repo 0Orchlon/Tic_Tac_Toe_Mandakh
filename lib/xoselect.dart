@@ -74,8 +74,8 @@ class xoselect extends StatelessWidget {
                   onTap: null, // Handle your callback.
                   splashColor: Colors.transparent,
                   child: Ink(
-                    height: 50,
-                    width: 50,
+                    height: 100,
+                    width: 100,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       ),
