@@ -107,17 +107,23 @@ void onCellTapped(int row, int col) {
     barrierDismissible: false, // Prevent dialog from being dismissed when clicking outside
     builder: (context) {
       return AlertDialog(
-        title: AbsorbPointer(child: Center(child: Text('Player $currentPlayer wins!'))),
+        backgroundColor: Colors.transparent,
+        title: AbsorbPointer(child: Center(child: Text('Player $currentPlayer wins!', style: TextStyle(color: Colors.white),))),
         actions: <Widget>[
           Center(
             child: ElevatedButton(
-              child: Text('Play Again'),
+              child: Text('Play Again', style: TextStyle(color: Colors.black),),
               onPressed: () {
                 initializeGame();
                 Navigator.of(context).pop();
               },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.circular(20), ),
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), 
             ),
-          ),
+          ),)
         ],
       );
     },
