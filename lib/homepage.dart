@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'c2player.dart'; // Import the game
@@ -20,7 +22,9 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+void closeAppUsingSystemPop(){
+  exit(0);
+}
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -88,7 +92,7 @@ class HomePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   
-                  SystemNavigator.pop();
+                  closeAppUsingSystemPop();
                 },
                 child: Text('exit', style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
