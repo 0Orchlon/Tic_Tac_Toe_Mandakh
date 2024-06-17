@@ -161,7 +161,7 @@ Widget build(BuildContext context) {
     body: Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('../assets/pictures/background1.gif'),
+          image: AssetImage('../assets/pictures/3545420.jpg'),
           fit: BoxFit.cover,
         ),
       ),

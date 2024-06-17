@@ -321,7 +321,7 @@ void makeBotMove() {
       body:  Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('../assets/pictures/background.gif'),
+          image: AssetImage('../assets/pictures/6081504.jpg'),
           fit: BoxFit.cover,
         ),
       ),
