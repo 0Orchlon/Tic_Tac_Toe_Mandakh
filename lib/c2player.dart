@@ -153,94 +153,145 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
 }
 // The Interface
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('2 Player XO3'),
-      ),
-      body:  Container(
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text('2 Player XO3'),
+    ),
+    body: Container(
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage('../assets/pictures/background1.gif'),
           fit: BoxFit.cover,
         ),
       ),
-      child: 
-      Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Column(
-          children: [
-          // Text('Current Turn: ${currentPlayer == 'X'? 'X' : 'O'}', style: TextStyle(fontSize: 24),),
-            Container(
-            decoration: currentPlayer == 'X'
-                ? BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(width: 3, color: Colors.green))
-                : null,
-              child: Image.asset('../assets/pictures/xlocal.png', width: 50, height: 50, fit: BoxFit.contain),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(bottom: 10), // Add padding to move the text
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: currentPlayer == 'X'
+                              ? BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(width: 3, color: Colors.green),
+                                )
+                              : null,
+                          child: Opacity(
+                            opacity: currentPlayer == 'X' ? 1.0 : 0.3,
+                            child: Image.asset(
+                              '../assets/pictures/xlocal.png',
+                              width: 50,
+                              height: 50,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10), // Add some space between image and text
+                        Positioned(
+                    bottom: 0,
+                    child: 
+                        Text(
+                          'Wins: $xWins',
+                          style: TextStyle(fontSize: 24, color: Colors.white),
+                        ),)
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(width: 25), // Add some space between the two columns
+              Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(bottom: 10), // Add padding to move the text
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: currentPlayer == 'O'
+                              ? BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(width: 3, color: Colors.green),
+                                )
+                              : null,
+                          child: Opacity(
+                            opacity: currentPlayer == 'O' ? 1.0 : 0.3,
+                            child: Image.asset(
+                              '../assets/pictures/olocal.png',
+                              width: 50,
+                              height: 50,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10), // Add some space between image and text
+                        Text(
+                          'Wins: $oWins',
+                          style: TextStyle(fontSize: 24, color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(height: 10), // Add space between the rows and the grid
+          Center(
+            child: SizedBox(
+              width: 300, // Adjust the width and height as needed
+              height: 300,
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 5,
+                ),
+                itemCount: 25,
+                itemBuilder: (context, index) {
+                  final row = index ~/ 5;
+                  final col = index % 5;
+                  return GestureDetector(
+                    onTap: () => onCellTapped(row, col),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200], // Change the background color
+                        border: Border.all(),
+                      ),
+                      child: Center(
+                        child: board[row][col].isEmpty
+                            ? Text('')
+                            : board[row][col] == 'X'
+                                ? SizedBox(
+                                    width: 60,
+                                    height: 60,
+                                    child: Image.asset(
+                                      '../assets/pictures/xlocal.png',
+                                      fit: BoxFit.contain,
+                                    ),
+                                  )
+                                : SizedBox(
+                                    width: 60,
+                                    height: 60,
+                                    child: Image.asset(
+                                      '../assets/pictures/olocal.png',
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
-            Text('Wins: $xWins', style: TextStyle(fontSize: 24, color: Colors.white),),
-          ],
-        ),
-        SizedBox(width: 25), // Add some space between the two columns
-        Column(
-          children: [
-            Container(
-              decoration: currentPlayer == 'O'
-                ? BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(width: 3, color: Colors.green))
-                : null,
-              child: Image.asset('../assets/pictures/olocal.png', width: 50, height: 50, fit: BoxFit.contain),
-            ),
-            Text('Wins: $oWins', style: TextStyle(fontSize: 24, color: Colors.white),),
-          ],
-        ),
-      ],
-    ),
-      Center(child: SizedBox(
-        width: 300, // Adjust the width and height as needed
-        height: 300,
-      child: GridView.builder(
-  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    crossAxisCount: 5,),
-  itemCount: 25,
-  itemBuilder: (context, index) { 
-    final row = index ~/ 5;
-    final col = index % 5;
-    return GestureDetector(
-      onTap: () => onCellTapped(row, col),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey[200], // Change the background color
-          border: Border.all(),
-        ),
-        child: Center(
-          child: board[row][col].isEmpty
-    ? Text('')
-    : board[row][col] == 'X'
-      ? SizedBox(
-          width: 60,
-          height: 60,
-          child: Image.asset('../assets/pictures/xlocal.png', fit: BoxFit.contain),
-        )
-      : SizedBox(
-          width: 60,
-          height: 60,
-          child: Image.asset('../assets/pictures/olocal.png', fit: BoxFit.contain),
-        ),
-)
+          ),
+        ],
       ),
-    );
-  },
-)
-        ),)
-        ],),
-    )
-    );
-  }
-}
+    ),
+  );
+}}
