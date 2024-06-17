@@ -30,7 +30,7 @@ class xoselect extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('../assets/pictures/3186997.jpg'),
+            image: AssetImage('../assets/pictures/654321.jpg'),
             fit: BoxFit.cover,
           ),
         ),

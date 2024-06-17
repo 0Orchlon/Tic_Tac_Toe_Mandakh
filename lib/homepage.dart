@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
       ),
       home: HomePage(),
     );
@@ -27,7 +28,14 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Tic Tac Toe Mandkah'),
       ),
-      body: Center(
+      body: Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('../assets/pictures/654321.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+      child: Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -95,6 +103,6 @@ class HomePage extends StatelessWidget {
           // hlep me
         ),
       ),
-    );
+    ));
   }
 } 
