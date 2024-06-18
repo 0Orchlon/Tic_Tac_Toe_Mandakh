@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'c2player.dart'; // Import the game
 import 'xoselect.dart';
+import '33c2player.dart';
 void main() {
   runApp(MyApp());
 }
@@ -76,10 +77,28 @@ class HomePage extends StatelessWidget {
                   // Navigate to the game screen
                   Navigator.push(
                     context,
+                    MaterialPageRoute(builder: (context) => TicTacToe3x3()),
+                  );
+                },
+                child: Text('Start 2P 3x3', style: TextStyle(color: Colors.white),),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  shape: BeveledRectangleBorder(
+                 borderRadius: BorderRadius.circular(20), // Rounded corners
+                    ),
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), // Button padding
+                ),
+              ),
+              SizedBox(height: 10.0),
+              ElevatedButton(
+                onPressed: () {
+                  // Navigate to the game screen
+                  Navigator.push(
+                    context,
                     MaterialPageRoute(builder: (context) => TicTacToeGame()),
                   );
                 },
-                child: Text('Start 2 player Game', style: TextStyle(color: Colors.white),),
+                child: Text('Start 2P 5x5', style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
                   shape: BeveledRectangleBorder(
