@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'XO Selection',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -27,14 +27,21 @@ class xoselect extends StatelessWidget {
       appBar: AppBar(
         title: Text('Tic Tac Toe Mandkah'),
       ),
-      body: 
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('../assets/pictures/654321.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: 
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Choose your shape!',
               style: TextStyle(
-                color: Colors.blue,
+                color: Colors.white,
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
               ),
@@ -111,6 +118,7 @@ class xoselect extends StatelessWidget {
             ),
           ],
         ),
+    )
     );
   }
 }

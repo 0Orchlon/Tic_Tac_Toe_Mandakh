@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'c2player.dart'; // Import the game
@@ -14,12 +16,15 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
       ),
       home: HomePage(),
     );
   }
 }
-
+void closeAppUsingSystemPop(){
+  exit(0);
+}
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -27,7 +32,14 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Tic Tac Toe Mandkah'),
       ),
-      body: Center(
+      body: Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('../assets/pictures/654321.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+      child: Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -80,7 +92,7 @@ class HomePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   
-                  SystemNavigator.pop();
+                  closeAppUsingSystemPop();
                 },
                 child: Text('exit', style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
@@ -95,6 +107,6 @@ class HomePage extends StatelessWidget {
           // hlep me
         ),
       ),
-    );
+    ));
   }
 } 

@@ -99,17 +99,23 @@ void onCellTapped(int row, int col) {
     barrierDismissible: false, // Prevent dialog from being dismissed when clicking outside
     builder: (context) {
       return AlertDialog(
-        title: AbsorbPointer(child: Center(child: Text('Player $currentPlayer wins!'))),
+        backgroundColor: Colors.transparent,
+        title: AbsorbPointer(child: Center(child: Text('Player $currentPlayer wins!', style: TextStyle(color: Colors.white),))),
         actions: <Widget>[
           Center(
             child: ElevatedButton(
-              child: Text('Play Again'),
+              child: Text('Play Again', style: TextStyle(color: Colors.black),),
               onPressed: () {
                 initializeGame();
                 Navigator.of(context).pop();
               },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.circular(20), ),
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), 
             ),
-          ),
+          ),)
         ],
       );
     },
@@ -321,7 +327,7 @@ void makeBotMove() {
       body:  Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('../assets/pictures/background.gif'),
+          image: AssetImage('../assets/pictures/6081504.jpg'),
           fit: BoxFit.cover,
         ),
       ),
@@ -341,8 +347,9 @@ void makeBotMove() {
                   shape: BoxShape.circle,
                   border: Border.all(width: 4, color: Colors.green))
                 : null,
-              child: Image.asset('../assets/pictures/xlocal.png', width: 30, height: 30, fit: BoxFit.contain),
-            ),
+                child: Opacity(opacity: currentPlayer == 'X' ? 1.0 : 0.3,
+              child: Image.asset('../assets/pictures/xlocal.png', width: 50, height: 50, fit: BoxFit.contain),
+            ),),
             Text('Wins: $xWins', style: TextStyle(fontSize: 24, color: Colors.white),),
           ],
         ),
@@ -355,10 +362,11 @@ void makeBotMove() {
                   shape: BoxShape.circle,
                   border: Border.all(width: 4, color: Colors.green))
                 : null,
-              child: Image.asset('../assets/pictures/olocal.png', width: 30, height: 30, fit: BoxFit.contain),
-            ),
-            Text('Wins: $oWins', style: TextStyle(fontSize: 24, color: Colors.white),),
-          ],
+                child: Opacity(opacity: currentPlayer == 'O' ? 1.0 : 0.3,
+                child :Image.asset('../assets/pictures/olocal.png', width: 50, height: 50, fit: BoxFit.contain),
+            ),),
+            Text('Wins: $oWins', style: TextStyle(fontSize: 24,color: Colors.white),),
+        ],
         ),
       ],
     ),
