@@ -20,7 +20,7 @@ class TicTacToeGame extends StatefulWidget {
 }
 
 class _TicTacToeGameState extends State<TicTacToeGame> {
-  List<List<String>> board = List.generate(5, (_) => List.filled(5, ''));
+  List<List<String>> board = List.generate(6, (_) => List.filled(6, ''));
   String currentPlayer = 'X';
   int moveCount = 0;
   List<List<int>> moveHistory = [];
@@ -35,7 +35,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
 // start the game
   void initializeGame() {
     setState(() {
-      board = List.generate(5, (_) => List.filled(5, ''));
+      board = List.generate(6, (_) => List.filled(6, ''));
       currentPlayer = 'X';
       moveCount = 0;
       moveHistory.clear();
@@ -75,11 +75,11 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
   }
 }
 // Check for win
-  bool checkWin() {
+bool checkWin() {
   // Check rows
-  for (int i = 0; i < 5; i++) {
-    for (int j = 0; j <= 5 - 5; j++) {
-      if (board[i][j] != '' &&
+  for (int i = 0; i < 6; i++) {
+    for (int j = 0; j < 2; j++) {
+      if (board[i][j]!= '' &&
           board[i][j] == board[i][j + 1] &&
           board[i][j] == board[i][j + 2] &&
           board[i][j] == board[i][j + 3] &&
@@ -90,22 +90,22 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
   }
 
   // Check columns
-  for (int i = 0; i < 5; i++) {
-    for (int j = 0; j <= 5 - 5; j++) {
-      if (board[j][i] != '' &&
-          board[j][i] == board[j + 1][i] &&
-          board[j][i] == board[j + 2][i] &&
-          board[j][i] == board[j + 3][i] &&
-          board[j][i] == board[j + 4][i]) {
+  for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 6; j++) {
+      if (board[i][j]!= '' &&
+          board[i][j] == board[i + 1][j] &&
+          board[i][j] == board[i + 2][j] &&
+          board[i][j] == board[i + 3][j] &&
+          board[i][j] == board[i + 4][j]) {
         return true;
       }
     }
   }
 
   // Check diagonals (top-left to bottom-right)
-  for (int i = 0; i <= 5 - 5; i++) {
-    for (int j = 0; j <= 5 - 5; j++) {
-      if (board[i][j] != '' &&
+  for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 2; j++) {
+      if (board[i][j]!= '' &&
           board[i][j] == board[i + 1][j + 1] &&
           board[i][j] == board[i + 2][j + 2] &&
           board[i][j] == board[i + 3][j + 3] &&
@@ -116,10 +116,13 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
   }
 
   // Check diagonals (bottom-left to top-right)
-  for (int i = 0; i <= 5 - 5; i++) {
-    for (int j = 4; j >= 4 - (5 - 5); j--) {
-      if (board[i][j] != '' &&
-          board[i][j] == board[i + 1][j - 1] && board[i][j] == board[i + 2][j - 2] && board[i][j] == board[i + 3][j - 3] && board[i][j] == board[i + 4][j - 4]) {
+  for (int i = 5; i >= 4; i--) {
+    for (int j = 0; j < 2; j++) {
+      if (board[i][j]!= '' &&
+          board[i][j] == board[i - 1][j + 1] &&
+          board[i][j] == board[i - 2][j + 2] &&
+          board[i][j] == board[i - 3][j + 3] &&
+          board[i][j] == board[i - 4][j + 4]) {
         return true;
       }
     }
@@ -256,12 +259,12 @@ Widget build(BuildContext context) {
               height: 300,
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5,
+                  crossAxisCount: 6,
                 ),
-                itemCount: 25,
+                itemCount: 36,
                 itemBuilder: (context, index) {
-                  final row = index ~/ 5;
-                  final col = index % 5;
+                  final row = index ~/ 6;
+                  final col = index % 6;
                   return GestureDetector(
                     onTap: () => onCellTapped(row, col),
                     child: Container(
