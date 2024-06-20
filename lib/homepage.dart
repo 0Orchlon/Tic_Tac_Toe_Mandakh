@@ -8,7 +8,6 @@ import '33c2player.dart';
 void main() {
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -44,8 +43,6 @@ class HomePage extends StatelessWidget {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-            
-
               Text(
                 'Тик Так Той Тавтай Морил!',
                 style: TextStyle(
@@ -61,7 +58,6 @@ class HomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => xoselect()),
-    
                   );
                 },
                 child: Text('Эхлэх', style: TextStyle(color: Colors.white),),
@@ -112,12 +108,11 @@ class HomePage extends StatelessWidget {
               SizedBox(height: 10.0),
               ElevatedButton(
                 onPressed: () {
-                  
                   closeAppUsingSystemPop();
                 },
                 child: Text('Гарах', style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.grey,
+                  backgroundColor: Colors.redAccent,
                   shape: BeveledRectangleBorder(
                  borderRadius: BorderRadius.circular(20), // Rounded corners
                     ),
