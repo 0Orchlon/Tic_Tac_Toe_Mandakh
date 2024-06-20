@@ -137,11 +137,6 @@ void onCellTapped(int row, int col) {
                 'Play Again',
                 style: TextStyle(color: Colors.black),
               ),
-        title: AbsorbPointer(child: Center(child: Text('Тоглогч $currentPlayer яллаа!', style: TextStyle(color: Colors.white),))),
-        actions: <Widget>[
-          Center(
-            child: ElevatedButton(
-              child: Text('Дахин Тоглох', style: TextStyle(color: Colors.black),),
               onPressed: () {
                 initializeGame();
                 Navigator.of(context).pop();
