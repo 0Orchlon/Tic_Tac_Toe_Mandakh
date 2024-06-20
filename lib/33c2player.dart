@@ -100,11 +100,11 @@ class _TicTacToe3x3State extends State<TicTacToe3x3> {
     builder: (context) {
       return AlertDialog(
         backgroundColor: Colors.transparent,
-        title: AbsorbPointer(child: Center(child: Text('Player $currentPlayer wins!', style: TextStyle(color: Colors.white),))),
+        title: AbsorbPointer(child: Center(child: Text('Тоглогч $currentPlayer яллаа!', style: TextStyle(color: Colors.white),))),
         actions: <Widget>[
           Center(
             child: ElevatedButton(
-              child: Text('Play Again', style: TextStyle(color: Colors.black),),
+              child: Text('Дахин Тоглох', style: TextStyle(color: Colors.black),),
               onPressed: () {
                 initializeGame();
                 Navigator.of(context).pop();
