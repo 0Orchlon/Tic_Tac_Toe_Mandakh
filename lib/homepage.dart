@@ -1,5 +1,5 @@
 import 'dart:io';
-
+// import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'c2player.dart'; // Import the game

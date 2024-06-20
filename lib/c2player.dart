@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:lottie/lottie.dart';
 void main() {
   runApp(MyApp());
 }
@@ -139,23 +139,57 @@ bool checkWin() {
     builder: (context) {
       return AlertDialog(
         backgroundColor: Colors.transparent,
-        title: AbsorbPointer(child: Center(child: Text('Player $currentPlayer wins!', style: TextStyle(color: Colors.white),))),
-        actions: <Widget>[
-          Center(
-            child: ElevatedButton(
-              child: Text('Play Again', style: TextStyle(color: Colors.black),),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Left Lottie Animation
+                Lottie.asset(
+                  '../assets/lottie/congrats.json',
+                  width: 100,
+                  height: 100,
+                ),
+                SizedBox(width: 10), // Spacing between Lottie and text
+                AbsorbPointer(
+                  child: Center(
+                    child: Text(
+                      'Player $currentPlayer wins!',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10), // Spacing between text and Lottie
+                // Right Lottie Animation
+                Lottie.asset(
+                  '../assets/lottie/congrats.json',
+                  width: 100,
+                  height: 100,
+                ),
+              ],
+            ),
+            SizedBox(height: 20), // Spacing between text and button
+            ElevatedButton(
+              child: Text(
+                'Play Again',
+                style: TextStyle(color: Colors.black),
+              ),
               onPressed: () {
                 initializeGame();
                 Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  shape: BeveledRectangleBorder(
-                  borderRadius: BorderRadius.circular(20), ),
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), 
+                backgroundColor: Colors.white,
+                shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+              ),
             ),
-          ),)
-        ],
+          ],
+        ),
       );
     },
   );

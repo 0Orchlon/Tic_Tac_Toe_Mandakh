@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'c1playero.dart'; // Import the game
 import 'c1playerx.dart';
+// import 'package:lottie/lottie.dart';
 void main() {
   runApp(MyApp());
 }
