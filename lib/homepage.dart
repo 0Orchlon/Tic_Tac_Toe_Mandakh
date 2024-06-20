@@ -44,8 +44,10 @@ class HomePage extends StatelessWidget {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+            
+
               Text(
-                'Welcome to Tic Tac Toe!',
+                'Тик Так Той Тавтай Морил!',
                 style: TextStyle(
                   color: Colors.blue,
                   fontSize: 24.0,
@@ -62,7 +64,7 @@ class HomePage extends StatelessWidget {
     
                   );
                 },
-                child: Text('Start Game', style: TextStyle(color: Colors.white),),
+                child: Text('Эхлэх', style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   shape: BeveledRectangleBorder(
@@ -80,7 +82,7 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => TicTacToe3x3()),
                   );
                 },
-                child: Text('Start 2P 3x3', style: TextStyle(color: Colors.white),),
+                child: Text('2 Тоглогч 3x3', style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
                   shape: BeveledRectangleBorder(
@@ -98,7 +100,7 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => TicTacToeGame()),
                   );
                 },
-                child: Text('Start 2P 5x5', style: TextStyle(color: Colors.white),),
+                child: Text('2 Тоглогч 5x5', style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
                   shape: BeveledRectangleBorder(
@@ -113,7 +115,7 @@ class HomePage extends StatelessWidget {
                   
                   closeAppUsingSystemPop();
                 },
-                child: Text('exit', style: TextStyle(color: Colors.white),),
+                child: Text('Гарах', style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey,
                   shape: BeveledRectangleBorder(

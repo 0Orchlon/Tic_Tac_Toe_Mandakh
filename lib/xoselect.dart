@@ -40,7 +40,7 @@ class xoselect extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Choose your shape!',
+              'Дүрсээ сонгоно уу!',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24.0,

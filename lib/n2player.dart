@@ -81,11 +81,11 @@ class _NTicTacToeGameState extends State<NTicTacToeGame> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Game Over'),
-          content: Text('Player $currentPlayer wins!'),
+          title: Text('Тоглоом Дууслаа'),
+          content: Text('Тоглогч $currentPlayer яллаа!'),
           actions: <Widget>[
             ElevatedButton(
-              child: Text('Play Again'),
+              child: Text('Дахин тоглох'),
               onPressed: () {
                 initializeGame();
                 Navigator.of(context).pop();
@@ -102,11 +102,11 @@ class _NTicTacToeGameState extends State<NTicTacToeGame> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Game Over'),
-          content: Text('It\'s a draw!'),
+          title: Text('Тоглоом Дууслаа'),
+          content: Text('Энэ бол Тэнцээ!'),
           actions: <Widget>[
             ElevatedButton(
-              child: Text('Play Again'),
+              child: Text('Дахин Тоглох'),
               onPressed: () {
                 initializeGame();
                 Navigator.of(context).pop();
