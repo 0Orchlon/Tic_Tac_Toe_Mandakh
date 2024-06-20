@@ -96,7 +96,7 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => TicTacToeGame()),
                   );
                 },
-                child: Text('2 Тоглогч 5x5', style: TextStyle(color: Colors.white),),
+                child: Text('2 Тоглогч 6x6', style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
                   shape: BeveledRectangleBorder(
