@@ -67,7 +67,6 @@ class tpselect extends StatelessWidget {
                             height: 100,
                             width: 100,
                             decoration: BoxDecoration(
-                            color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
                               image: DecorationImage(
                                 image: AssetImage('../assets/pictures/3x3.png'),
@@ -134,7 +133,7 @@ class tpselect extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '6x6 grid 5x5 rule',
+                      '5x5 grid 5x5 rule',
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                   ],
