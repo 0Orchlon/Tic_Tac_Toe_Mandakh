@@ -28,15 +28,14 @@ class tpselect extends StatelessWidget {
       appBar: AppBar(
         title: Text('Tic Tac Toe Mandkah'),
       ),
-      body: Container(
+      body:Container(
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('../assets/pictures/654321.jpg'),
             fit: BoxFit.cover,
           ),
         ),
-        child: 
-        Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
@@ -47,79 +46,106 @@ class tpselect extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            SizedBox(height: 20), // Adds some space between the title and the images
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ClipOval(
-                  child: Material(
-                  color: Colors.transparent, 
-                  child: 
-                InkWell(
-                  onTap: () {Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => TicTacToe3x3()),
-                  );}, // Handle your callback.
-                  splashColor: Colors.brown.withOpacity(0.5),
-                  child: Ink(
-                    height: 100,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage('../assets/pictures/3x3.png'),
-                        fit: BoxFit.cover,
+                Column(
+                  children: [
+                    ClipRect(
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => TicTacToe3x3()),
+                            );
+                          },
+                          splashColor: Colors.brown.withOpacity(0.5),
+                          child: Ink(
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('../assets/pictures/3x3.png'),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    SizedBox(height: 8),
+                    Text(
+                      '3x3 grid',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+                  ],
                 ),
-                ),
-                ),
-                ClipOval(
-                  child: Material(
-                  color: Colors.transparent, 
-                  child: 
-                InkWell(
-                  onTap: null, // Handle your callback.
-                  splashColor: Colors.transparent,
-                  child: Ink(
-                    height: 100,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
+                SizedBox(width: 20), // Adds space between the columns
+                Column(
+                  children: [
+                    ClipRect(
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: null,
+                          splashColor: Colors.transparent,
+                          child: Ink(
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    SizedBox(height: 8),
+                    Text(
+                      '',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+                  ],
                 ),
-                ),
-                ClipOval(
-                  child: Material(
-                  color: Colors.transparent, 
-                  child: 
-                InkWell(
-                  onTap: () {Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => TicTacToeGame()),
-                  );}, // Handle your callback.
-                  splashColor: Colors.brown.withOpacity(0.5),
-                  child: Ink(
-                    height: 100,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage('../assets/pictures/5x5.png'),
-                        fit: BoxFit.cover,
+                SizedBox(width: 20), // Adds space between the columns
+                Column(
+                  children: [
+                    ClipRect(
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => TicTacToeGame()),
+                            );
+                          },
+                          splashColor: Colors.brown.withOpacity(0.5),
+                          child: Ink(
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('../assets/pictures/5x5.png'),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    SizedBox(height: 8),
+                    Text(
+                      '6x6 grid 5x5 rule',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+                  ],
                 ),
-                ),
-                )
               ],
             ),
           ],
         ),
-    )
+      ),
     );
   }
 }
