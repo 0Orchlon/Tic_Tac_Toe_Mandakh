@@ -67,6 +67,8 @@ class tpselect extends StatelessWidget {
                             height: 100,
                             width: 100,
                             decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
                               image: DecorationImage(
                                 image: AssetImage('../assets/pictures/3x3.png'),
                                 fit: BoxFit.cover,
