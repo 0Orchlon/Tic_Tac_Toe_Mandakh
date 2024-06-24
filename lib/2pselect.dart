@@ -6,7 +6,6 @@ import '33c2player.dart';
 void main() {
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 class tpselect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -101,7 +99,6 @@ class tpselect extends StatelessWidget {
                         ),
                       ),
                     ),
-                    
                   ],
                 ),
                 SizedBox(width: 20), // Adds space between the columns
