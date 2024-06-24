@@ -85,7 +85,7 @@ class tpselect extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(width: 20), // Adds space between the columns
+                SizedBox(width: 1), // Adds space between the columns
                 Column(
                   children: [
                     ClipRect(
@@ -95,18 +95,14 @@ class tpselect extends StatelessWidget {
                           onTap: null,
                           splashColor: Colors.transparent,
                           child: Ink(
-                            height: 100,
-                            width: 100,
+                            height: 1,
+                            width: 1,
                             decoration: BoxDecoration(),
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 8),
-                    Text(
-                      '',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    ),
+                    
                   ],
                 ),
                 SizedBox(width: 20), // Adds space between the columns
