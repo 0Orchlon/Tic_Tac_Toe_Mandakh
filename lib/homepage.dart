@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'c2player.dart'; // Import the game
 import 'xoselect.dart';
 import '33c2player.dart';
+import '2pselect.dart';
 void main() {
   runApp(MyApp());
 }
@@ -43,6 +44,11 @@ class HomePage extends StatelessWidget {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset(
+                '../assets/pictures/logo.png',  // Replace with your logo path
+                width: 80,  // Adjust size as needed
+                height: 80,
+              ),
               Text(
                 'Тик Так Той Тавтай Морил!',
                 style: TextStyle(
@@ -51,76 +57,39 @@ class HomePage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+            
+               SizedBox(height: 20.0),
+               IconButton(
+                icon: Image.asset('../assets/pictures/1player.png',
+                  width: 70.0,  // Width of the Image inside IconButton
+                  height: 70.0, // Height of the Image inside IconButton
+                  fit: BoxFit.cover, ),
+                iconSize: 50.0,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => xoselect())
+                  );  
+                },
+              ),
               SizedBox(height: 20.0),
-              ElevatedButton(
+              IconButton(
+                icon: Image.asset('../assets/pictures/2players.png' ,
+                 width: 70.0,  // Width of the Image inside IconButton
+                 height: 70.0, // Height of the Image inside IconButton
+                    
+                 fit: BoxFit.cover,),
+                iconSize: 50.0,
                 onPressed: () {
-                  // Navigate to the game screen
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => xoselect()),
+                    MaterialPageRoute(builder: (context) => tpselect())
                   );
                 },
-                child: Text('Эхлэх', style: TextStyle(color: Colors.white),),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  shape: BeveledRectangleBorder(
-                 borderRadius: BorderRadius.circular(20), // Rounded corners
-                    ),
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), // Button padding
-                ),
               ),
-              SizedBox(height: 10.0),
-              ElevatedButton(
-                onPressed: () {
-                  // Navigate to the game screen
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => TicTacToe3x3()),
-                  );
-                },
-                child: Text('2 Тоглогч 3x3', style: TextStyle(color: Colors.white),),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  shape: BeveledRectangleBorder(
-                 borderRadius: BorderRadius.circular(20), // Rounded corners
-                    ),
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), // Button padding
-                ),
-              ),
-              SizedBox(height: 10.0),
-              ElevatedButton(
-                onPressed: () {
-                  // Navigate to the game screen
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => TicTacToeGame()),
-                  );
-                },
-                child: Text('2 Тоглогч 6x6', style: TextStyle(color: Colors.white),),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  shape: BeveledRectangleBorder(
-                 borderRadius: BorderRadius.circular(20), // Rounded corners
-                    ),
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), // Button padding
-                ),
-              ),
-              SizedBox(height: 10.0),
-              ElevatedButton(
-                onPressed: () {
-                  closeAppUsingSystemPop();
-                },
-                child: Text('Гарах', style: TextStyle(color: Colors.white),),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
-                  shape: BeveledRectangleBorder(
-                 borderRadius: BorderRadius.circular(20), // Rounded corners
-                    ),
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30), // Button padding
-                ),
-              ),
+             
             ],
-          // hlep me
+          
         ),
       ),
     ));
