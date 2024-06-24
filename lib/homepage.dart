@@ -1,10 +1,8 @@
 import 'dart:io';
 // import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'c2player.dart'; // Import the game
+import 'package:flutter/services.dart';// Import the game
 import 'xoselect.dart';
-import '33c2player.dart';
 import '2pselect.dart';
 void main() {
   runApp(MyApp());
@@ -50,20 +48,29 @@ class HomePage extends StatelessWidget {
                 height: 80,
               ),
               Text(
-                'Тик Так Той Тавтай Морил!',
+                'XO3 Тавтай Морил!',
                 style: TextStyle(
                   color: Colors.blue,
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            
-               SizedBox(height: 20.0),
-               IconButton(
-                icon: Image.asset('../assets/pictures/1player.png',
-                  width: 70.0,  // Width of the Image inside IconButton
-                  height: 70.0, // Height of the Image inside IconButton
-                  fit: BoxFit.cover, ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+                SizedBox(height: 20.0),
+                Column(
+                  children: [
+                IconButton(  
+                icon: Container(
+                  width: 90.0,  // Width of the Image inside IconButton
+                  height: 90.0, // Height of the Image inside IconButton
+                  decoration: BoxDecoration(
+                  color: Colors.white70, // Background color
+                  borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  child: Image.asset('../assets/pictures/1player.png',
+                  fit: BoxFit.cover, ),),
                 iconSize: 50.0,
                 onPressed: () {
                   Navigator.push(
@@ -71,14 +78,25 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => xoselect())
                   );  
                 },
-              ),
+                ),
+              Text(
+                      '1 Тоглогч',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+            ]
+            ),
               SizedBox(height: 20.0),
+              Column(
+                children: [
               IconButton(
-                icon: Image.asset('../assets/pictures/2players.png' ,
-                 width: 70.0,  // Width of the Image inside IconButton
-                 height: 70.0, // Height of the Image inside IconButton
-                    
-                 fit: BoxFit.cover,),
+                icon: Container(
+                  width: 90.0,  // Width of the Image inside IconButton
+                  height: 90.0, // Height of the Image inside IconButton
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                  color: Colors.white70, ),
+                  child: Image.asset('../assets/pictures/2players.png' ,
+                  fit: BoxFit.cover,),),
                 iconSize: 50.0,
                 onPressed: () {
                   Navigator.push(
@@ -87,11 +105,17 @@ class HomePage extends StatelessWidget {
                   );
                 },
               ),
-             
-            ],
-          
+              Text(
+                      '2 Тоглогч',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+              ])
+                  ],
+              ),
+            ]
+          ),
+          ),
         ),
-      ),
-    ));
+    );
   }
 } 
